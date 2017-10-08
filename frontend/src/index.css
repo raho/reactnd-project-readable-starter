@@ -4,17 +4,6 @@ body {
   font-family: sans-serif;
 }
 
-.App {
-  text-align: center;
-}
-
-.App-header {
+.bg-black {
   background-color: #222;
-  height: 100px;
-  padding: 10px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
 }

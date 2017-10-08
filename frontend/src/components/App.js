@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCategories } from '../actions'
+import {Link} from 'react-router-dom';
 
 class App extends Component {
-  // TODO: categories listing should be a separate component?
+  // TODO: categories listing should be a separate component? => Navigation?
   // TODO: implement and style the categories, just like in medium
+  // TODO: class 'active' for selected category
   componentDidMount() {
     this.props.fetchCategories();
   }
@@ -13,16 +15,14 @@ class App extends Component {
     const { categories } = this.props;
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Readable</h1>
-          <ul>
+        <nav className="navbar navbar-expand navbar-dark bg-black">
+          <Link className="navbar-brand" to="/">Readable</Link>
+          <div className="navbar-nav">
             {categories.map(category => (
-              <li key={category.name}>
-                {category.name}
-              </li>
+              <Link key={category.path} className="nav-item nav-link" to={category.path}>{category.name}</Link>
             ))} 
-          </ul>
-        </header>
+          </div>
+        </nav>
       </div>
     );
   }
