@@ -22,3 +22,7 @@ To start the project locally:
 ## API Server
 
 Information about the API server and how to use it can be found in its [README file](api-server/README.md).
+
+## Frontend App
+
+The api endpoint for local API server is hardcoded in the `src/utils/api.js` file.
