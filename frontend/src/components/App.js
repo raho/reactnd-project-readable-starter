@@ -1,28 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Route } from 'react-router-dom';
-import Navigation from './Navigation';
-import { connect } from 'react-redux';
-import { fetchCategories } from '../actions';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PostsContainer from './PostsContainer';
+import Post from './Post';
+import CategoriesLoader from './CategoriesLoader';
 
-class App extends Component {
+const App = ({categoriesLoaded}) => (
+  <div>
+    <Route path="/:category?" component={CategoriesLoader}/>
+    {categoriesLoaded ? <Route exact path="/:category?" component={PostsContainer}/> : null}
+    {categoriesLoaded ? <Route exact path="/:category/:post_id" component={Post}/> : null}
+  </div>
+)
 
-  componentDidMount() {
-    this.props.fetchCategories();
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <Route exact path="/" component={Navigation}/>
-        <Route path="/:category" component={Navigation}/>
-      </div>
-    );
+const mapStateToProps = ({categories}) => {
+  return {
+    categoriesLoaded: categories.loaded
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchCategories: () => dispatch(fetchCategories())
-})
-
-export default withRouter(connect(null, mapDispatchToProps)(App));
+export default withRouter(connect(mapStateToProps)(App));

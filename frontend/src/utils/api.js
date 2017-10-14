@@ -10,3 +10,13 @@ export const fetchCategories = () => {
     .then(res => res.json())
     .then(data => data.categories); 
 };
+
+/**
+ * Fetches all posts if category not provided or posts by category if category provided.
+ * @param {*} category 
+ */
+export const fetchPosts = (category) => {
+  const url = category ? `${API}/${category}/posts` : `${API}/posts`; 
+  return fetch(url, { headers })
+    .then(res => res.json());
+};
