@@ -22,6 +22,26 @@ const defaultData = {
     category: 'redux',
     voteScore: -5,
     deleted: false
+  },
+  "5ni6ok3ym7mf1p33lnez": {
+    id: '5ni6ok3ym7mf1p33lnez',
+    timestamp: 1468479768190,
+    title: 'Learn Redux in 11 minutes!',
+    body: 'Just kidding. It takes more than 11 minutes to learn technology.',
+    author: 'raho',
+    category: 'redux',
+    voteScore: 0,
+    deleted: false
+  },
+  "4ni6ok3ym7mf1p33lnez": {
+    id: '4ni6ok3ym7mf1p33lnez',
+    timestamp: 1468479738190,
+    title: 'Learn Redux in 12 minutes!',
+    body: 'Just kidding. It takes more than 12 minutes to learn technology.',
+    author: 'raho',
+    category: 'udacity',
+    voteScore: 0,
+    deleted: false
   }
 }
 

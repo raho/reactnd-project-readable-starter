@@ -3,6 +3,8 @@ import * as api from '../utils/api';
 export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES';
 export const SET_CURRENT_CATEGORY = 'SET_CURRENT_CATEGORY';
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
+export const UPVOTE_POST = 'VOTE_POST';
+export const UPDATE_POST = 'UPDATE_POST';
 
 export const receiveCategories = categories => ({
   type: RECEIVE_CATEGORIES,
@@ -30,10 +32,29 @@ export const receivePosts = posts => ({
 });
 
 export const fetchPosts = (category) => dispatch => {
-  api
-  .fetchPosts()
-  .then(posts => dispatch(receivePosts(posts)));
+  let posts
+  return api
+  .fetchPosts(category)
+  .then(_posts => {posts = _posts})
+  .then(() => Promise.all(posts.map(post => api.fetchPostComments(post.id))))
+  .then(results => {
+    posts.forEach((post, index) => {
+      post.comments = results[index];
+    })
+  })
+  .then(() => dispatch(receivePosts(posts)))
 };
+
+export const votePost = (postId, up) => dispatch => {
+  return api
+  .vote(postId, up)
+  .then(post => dispatch(updatePost(post)));
+}
+
+export const updatePost = post => ({
+  type: UPDATE_POST,
+  post
+});
 
 // TODO: fetchPosts if needed => or always???
 // export const fetchCategoriesIfNeeded = () => {

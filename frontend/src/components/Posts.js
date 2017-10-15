@@ -1,9 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Post from './Post';
 
 const Posts = ({category, posts}) => (
-  <div>
-    Posts from {category || 'all'}
+  <div className="posts">
+    <div className="container">
+      <div className="row">
+        {posts.map(post => (
+          <div key={post.id} className="col-12 col-md-6 col-lg-4">
+            <Post post={post}/>
+          </div>
+        ))} 
+      </div>
+    </div>
   </div>
 );
 
