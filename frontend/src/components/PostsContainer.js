@@ -5,10 +5,8 @@ import Navigation from './Navigation';
 import Posts from './Posts';
 
 // TODO: Posts should display '404' for bad category: when category properly selected then true, otherwise some error in store
-// TODO: 1. delete post
-// TODO: 2. link to post view
-// TODO: 3. sort posts
-// TODO: 4. edit post
+// TODO: - sort posts
+// TODO: - edit post
 class PostsContainer extends Component {
 
   componentDidMount() {
