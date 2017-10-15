@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { votePost } from '../actions';
+import { deletePost, votePost } from '../actions';
 
 class Post extends Component {
 
@@ -26,13 +26,21 @@ class Post extends Component {
           >
           <i className="fa fa-thumbs-o-down" aria-hidden="true"></i> Downvote
         </button>
+        <button
+          type="button"
+          className="btn btn-outline-danger btn-sm btn-space"
+          onClick={() => this.props.delete()}
+          >
+          <i className="fa fa-trash-o" aria-hidden="true"></i> Delete
+        </button>
       </div>
     )
   }
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  vote: (up) => dispatch(votePost(ownProps.post.id, up))
+  vote: (up) => dispatch(votePost(ownProps.post.id, up)),
+  delete: () => dispatch(deletePost(ownProps.post.id))
 })
 
 export default connect(null, mapDispatchToProps)(Post);

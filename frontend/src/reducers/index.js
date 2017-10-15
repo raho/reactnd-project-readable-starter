@@ -37,10 +37,14 @@ function posts(state = [], action) {
       const { post } = action;
       const postIndex = state.findIndex(p => p.id === post.id);
       if (postIndex >= 0) {
-        // replace with udpated post, just keep comments
-        post.comments = state[postIndex].comments;
         const posts = state.slice(); //copy array
-        posts[postIndex] = post;
+        if (post.deleted) {
+          posts.splice(postIndex, 1);
+        } else {
+          // replace with udpated post, just keep comments
+          post.comments = state[postIndex].comments;
+          posts[postIndex] = post;
+        }
         return posts;
       } else {
         return state;

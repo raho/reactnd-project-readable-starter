@@ -47,7 +47,7 @@ export const fetchPosts = (category) => dispatch => {
 
 export const votePost = (postId, up) => dispatch => {
   return api
-  .vote(postId, up)
+  .votePost(postId, up)
   .then(post => dispatch(updatePost(post)));
 }
 
@@ -55,6 +55,12 @@ export const updatePost = post => ({
   type: UPDATE_POST,
   post
 });
+
+export const deletePost = (postId) => dispatch => {
+  return api
+  .deletePost(postId)
+  .then(post => dispatch(updatePost(post)));
+}
 
 // TODO: fetchPosts if needed => or always???
 // export const fetchCategoriesIfNeeded = () => {
