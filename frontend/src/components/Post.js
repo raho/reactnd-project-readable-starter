@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { deletePost, votePost } from '../actions';
@@ -12,6 +13,7 @@ class Post extends Component {
       <div className="post">
         <Link className="post-title" to={`/${postCategoryPath}/${post.id}`}>{post.title}</Link>
         <div>by: {post.author}</div>
+        <div>date: {moment(post.timestamp).format('YYYY-MM-DD')}</div>
         <div>comments: {post.comments.length}</div>
         <div>score: {post.voteScore}</div>
         <button

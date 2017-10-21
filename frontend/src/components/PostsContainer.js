@@ -5,7 +5,6 @@ import Navigation from './Navigation';
 import Posts from './Posts';
 
 // TODO: Posts should display '404' for bad category: when category properly selected then true, otherwise some error in store
-// TODO: - sort posts
 // TODO: - edit post
 class PostsContainer extends Component {
 
