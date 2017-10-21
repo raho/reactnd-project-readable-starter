@@ -32,6 +32,10 @@ body {
   cursor: pointer; cursor: hand;
 }
 
+.comments {
+  padding: 30px;
+}
+
 .btn-space {
   margin-top: 5px;
   margin-right: 5px;

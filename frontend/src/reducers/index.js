@@ -4,6 +4,7 @@ import {
   RECEIVE_CATEGORIES,
   SET_CURRENT_CATEGORY,
   RECEIVE_POSTS,
+  RECEIVE_POST,
   UPDATE_POST
 } from '../actions';
 
@@ -29,29 +30,39 @@ function categories(state = { current: null, all: [], loaded: false }, action) {
 }
 
 function posts(state = [], action) {
-  switch (action.type) {
-    case RECEIVE_POSTS:
-      const { posts } = action;
-      return posts;
-    case UPDATE_POST:
-      const { post } = action;
-      const postIndex = state.findIndex(p => p.id === post.id);
-      if (postIndex >= 0) {
-        const posts = state.slice(); //copy array
-        if (post.deleted) {
-          posts.splice(postIndex, 1);
-        } else {
-          // replace with udpated post, just keep comments
-          post.comments = state[postIndex].comments;
-          posts[postIndex] = post;
-        }
-        return posts;
-      } else {
-        return state;
-      }
-    default:
-      return state;
+  if (action.type === RECEIVE_POSTS) {
+    const { posts } = action;
+    return posts;
   }
+  if (action.type === RECEIVE_POST) {
+    const { post } = action;
+    const postIndex = state.findIndex(p => p.id === post.id);
+    if (postIndex < 0) {
+      const posts = state.slice(); //copy array
+      posts.push(post);
+      return posts;
+    } else {
+      return state;
+    }
+  }
+  if (action.type === UPDATE_POST) {
+    const { post } = action;
+    const postIndex = state.findIndex(p => p.id === post.id);
+    if (postIndex >= 0) {
+      const posts = state.slice(); //copy array
+      if (post.deleted) {
+        posts.splice(postIndex, 1);
+      } else {
+        // replace with udpated post, just keep comments
+        post.comments = state[postIndex].comments;
+        posts[postIndex] = post;
+      }
+      return posts;
+    } else {
+      return state;
+    }
+  }
+  return state;
 }
 
 export default combineReducers({

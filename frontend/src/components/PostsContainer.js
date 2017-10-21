@@ -5,7 +5,8 @@ import Navigation from './Navigation';
 import Posts from './Posts';
 
 // TODO: Posts should display '404' for bad category: when category properly selected then true, otherwise some error in store
-// TODO: - edit post
+// TODO: add post from listing
+// TODO: edit post from listing (show the same modal)
 class PostsContainer extends Component {
 
   componentDidMount() {
