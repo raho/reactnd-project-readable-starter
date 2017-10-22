@@ -1,21 +1,30 @@
 import React from 'react';
+import styled from 'styled-components';
 import Comment from './Comment';
+
+const PostDetailContainer = styled.div`
+  padding: 20px 80px;
+`
+
+const CommentsContainer = styled.div`
+  padding: 30px;
+`
 
 // TODO: post data
 // TODO: comments
 const PostDetail = ({ post }) => (
-  <div>
+  <PostDetailContainer>
     Post detail {JSON.stringify(post, null, 2)}
     <div className="container">
-      <div className="row comments">
+      <CommentsContainer className="row">
         {post.comments.map(comment => (
           <div key={comment.id} className="col-12">
             <Comment comment={comment}/>
           </div>
         ))} 
-      </div>
+      </CommentsContainer>
     </div>
-  </div>
+  </PostDetailContainer>
 );
 
 export default PostDetail;

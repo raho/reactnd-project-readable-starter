@@ -2,6 +2,7 @@ import orderBy from 'lodash.orderby';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 import Post from './Post';
 
 const sortOptions = [
@@ -10,6 +11,10 @@ const sortOptions = [
   { id: 'score_asc', sortBy: 'voteScore', sortDir: 'asc', display: 'Score asc'},
   { id: 'score_desc', sortBy: 'voteScore', sortDir: 'desc', display: 'Score desc'},
 ];
+
+const PostsContainer = styled.div`
+  padding-top: 20px;
+`;
 
 class Posts extends Component {
   state = {
@@ -27,34 +32,31 @@ class Posts extends Component {
     let { sortBy } = this.state;
     posts = orderBy(posts, [sortBy.sortBy], [sortBy.sortDir]);
     return (
-      <div className="posts">
-
-        <div className="container">
-          <span>Sort by: </span>
-          <div className="btn-group" data-toggle="buttons">
-            {sortOptions.map(sortOption => (
-              <label 
-                key={sortOption.id}
-                className={'btn btn-light ' + (sortOption.id === sortBy.id ? 'active' : '')}
-              >
-                <input 
-                  type="radio" 
-                  name="options" 
-                  id={sortOption.id} 
-                  onClick={() => this.sortPosts(sortOption)}
-                />{sortOption.display}
-              </label>
-            ))}
-          </div>
-          <div className="row">
-            {posts.map(post => (
-              <div key={post.id} className="col-12 col-md-6 col-lg-4">
-                <Post post={post}/>
-              </div>
-            ))} 
-          </div>
+      <PostsContainer className="container">
+        <span>Sort by: </span>
+        <div className="btn-group" data-toggle="buttons">
+          {sortOptions.map(sortOption => (
+            <label 
+              key={sortOption.id}
+              className={'btn btn-light ' + (sortOption.id === sortBy.id ? 'active' : '')}
+            >
+              <input 
+                type="radio" 
+                name="options" 
+                id={sortOption.id} 
+                onClick={() => this.sortPosts(sortOption)}
+              />{sortOption.display}
+            </label>
+          ))}
         </div>
-      </div>
+        <div className="row">
+          {posts.map(post => (
+            <div key={post.id} className="col-12 col-md-6 col-lg-4">
+              <Post post={post}/>
+            </div>
+          ))} 
+        </div>
+      </PostsContainer>
     )
   }
 }

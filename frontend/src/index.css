@@ -4,38 +4,6 @@ body {
   font-family: sans-serif;
 }
 
-.bg-black {
-  background-color: #222;
-}
-
-.posts {
-  padding-top: 20px;
-}
-
-.post {
-  padding: 10px;
-  margin: 10px 0px 10px 0px;
-  border: 1px solid #ddd;
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.post div {
-  margin-bottom: 5px;
-}
-
-.post-title {
-  font-size: 1.5em;
-  line-height: 1.3em;
-  height: 3em;
-  overflow: hidden;
-  cursor: pointer; cursor: hand;
-}
-
-.comments {
-  padding: 30px;
-}
-
 .btn-space {
   margin-top: 5px;
   margin-right: 5px;

@@ -1,9 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+const BlackNav = styled.nav`
+  background-color: #222;
+`;
 
 const Navigation = ({categories}) => (
-  <nav className="navbar navbar-expand navbar-dark bg-black">
+  <BlackNav className="navbar navbar-expand navbar-dark">
     <Link className="navbar-brand" to="/">Readable</Link>
     <div className="navbar-nav">
       {categories.all.map(category => (
@@ -13,7 +18,7 @@ const Navigation = ({categories}) => (
           to={`/${category.path}`}>{category.name}</Link>
       ))} 
     </div>
-  </nav>
+  </BlackNav>
 );
 
 const mapStateToProps = ({categories}) => {
