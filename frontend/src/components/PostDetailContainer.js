@@ -32,7 +32,7 @@ class PostDetailContainer extends Component {
         {post && <PostDetail post={ post }/>}
         {error &&
           <div className="alert alert-danger" role="alert">
-            {error}
+            Post not found: {error}
           </div>
         }
       </div>

@@ -20,7 +20,6 @@ class Posts extends Component {
     this.setState({
       sortBy
     })
-    console.log(sortBy);
   }
 
   render() {
@@ -32,16 +31,17 @@ class Posts extends Component {
 
         <div className="container">
           <span>Sort by: </span>
-          <div class="btn-group" data-toggle="buttons">
+          <div className="btn-group" data-toggle="buttons">
             {sortOptions.map(sortOption => (
-              <label class={'btn btn-light ' + (sortOption.id === sortBy.id ? 'active' : '')}>
+              <label 
+                key={sortOption.id}
+                className={'btn btn-light ' + (sortOption.id === sortBy.id ? 'active' : '')}
+              >
                 <input 
                   type="radio" 
                   name="options" 
                   id={sortOption.id} 
-                  autocomplete="off" 
                   onClick={() => this.sortPosts(sortOption)}
-                  checked={sortOption.id === sortBy.id}
                 />{sortOption.display}
               </label>
             ))}
