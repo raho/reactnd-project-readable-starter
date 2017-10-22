@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+// TODO: comments
 class Comment extends Component {
 
   render() {
     const { comment } = this.props;
     return (
-      <div className="comment">
-        {JSON.stringify(comment, null, 2)}
+      <div>
+        {comment.body}
       </div>
     )
   }

@@ -1,9 +1,9 @@
 import moment from 'moment';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { deletePost, votePost } from '../actions';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import VoteScore from './VoteScore';
 
 const PostContainer = styled.div`
   padding: 10px;
@@ -40,21 +40,7 @@ class Post extends Component {
         <PostField>by: {post.author}</PostField>
         <PostField>date: {moment(post.timestamp).format('YYYY-MM-DD')}</PostField>
         <PostField>comments: {post.comments.length}</PostField>
-        <PostField>score: {post.voteScore}</PostField>
-        <button
-          type="button"
-          className="btn btn-outline-secondary btn-sm btn-space"
-          onClick={() => this.props.vote(true)}
-        >
-          <i className="fa fa-thumbs-o-up" aria-hidden="true"></i> Upvote
-        </button>
-        <button
-          type="button"
-          className="btn btn-outline-secondary btn-sm btn-space"
-          onClick={() => this.props.vote(false)}
-          >
-          <i className="fa fa-thumbs-o-down" aria-hidden="true"></i> Downvote
-        </button>
+        <VoteScore post={post}/>
         <button
           type="button"
           className="btn btn-outline-danger btn-sm btn-space"
@@ -72,9 +58,5 @@ const mapStateToProps = ({categories}) => {
     categories: categories.all
   }
 };
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  vote: (up) => dispatch(votePost(ownProps.post.id, up)),
-  delete: () => dispatch(deletePost(ownProps.post.id))
-})
 
-export default connect(mapStateToProps, mapDispatchToProps)(Post);
+export default connect(mapStateToProps)(Post);
