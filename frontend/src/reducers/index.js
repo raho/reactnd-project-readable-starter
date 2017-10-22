@@ -8,7 +8,7 @@ import {
   UPDATE_POST
 } from '../actions';
 
-function categories(state = { current: null, all: [], loaded: false }, action) {
+function categories(state = { current: null, currentBad: false, all: [], loaded: false }, action) {
   switch (action.type) {
     case RECEIVE_CATEGORIES:
       const { categories } = action;
@@ -20,9 +20,14 @@ function categories(state = { current: null, all: [], loaded: false }, action) {
     case SET_CURRENT_CATEGORY:
       const { categoryPath } = action;
       const category = state.all.find(cat => cat.path === categoryPath);
+      let currentBad = false;
+      if (categoryPath && !category) {
+        currentBad = true;
+      }
       return {
         ...state,
-        current: category && category.name
+        current: category && category.name,
+        currentBad
       };
     default:
       return state;

@@ -9,7 +9,7 @@ const PostDetail = ({ post }) => (
     <div className="container">
       <div className="row comments">
         {post.comments.map(comment => (
-          <div key={post.id} className="col-12">
+          <div key={comment.id} className="col-12">
             <Comment comment={comment}/>
           </div>
         ))} 

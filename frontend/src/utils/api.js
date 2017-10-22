@@ -24,7 +24,14 @@ export const fetchPosts = (category) => {
 
 export const fetchPost = (id) => {
   return fetch(`${API}/posts/${id}`, { headers })
-    .then(res => res.json());
+    .then(res => {
+      if (!res.ok) {
+        return res.json().then(errorJson => {
+          throw new Error(errorJson.error)
+        });
+      }
+      return res.json()
+    });
 }
 
 export const fetchPostComments = (postId) => {

@@ -53,6 +53,8 @@ export const fetchPostIfNeeded = (id) => (dispatch, getState) => {
   const posts = getState().posts;
   if (!posts.find(p => p.id === id)) {
     return dispatch(fetchPost(id));
+  } else {
+    return Promise.resolve(null);
   }
 };
 

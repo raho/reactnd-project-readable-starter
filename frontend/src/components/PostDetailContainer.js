@@ -1,26 +1,40 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPostIfNeeded } from '../actions';
-import Navigation from './Navigation';
 import PostDetail from './PostDetail';
 
 class PostDetailContainer extends Component {
+  state = {
+  };
 
   componentDidMount() {
-    this.props.fetchPostIfNeeded(this.props.postId);
+    this.fetchPost(this.props.postId);
   }
   componentWillReceiveProps(nextProps) {
     if (this.props.postId !== nextProps.postId) {
-      this.props.fetchPostIfNeeded(this.props.postId);
+      this.fetchPost(nextProps.postId);
     }
+  }
+
+  fetchPost(id) {
+    this.setState({ error: null });
+    this.props.fetchPostIfNeeded(id)
+    .catch(err => {
+      this.setState({ error: err.message });
+    })
   }
 
   render() {
     const { post } = this.props;
+    const { error } = this.state;
     return (
       <div>
-        <Navigation/>
         {post && <PostDetail post={ post }/>}
+        {error &&
+          <div className="alert alert-danger" role="alert">
+            {error}
+          </div>
+        }
       </div>
     );
   }
