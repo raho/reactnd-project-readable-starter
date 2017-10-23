@@ -32,13 +32,14 @@ const CommentsContainer = styled.div`
 
 const CommentsHeader = styled.div`
   font-size: 14px;
-  color: #666;
-  padding: 2px 10px;
-  background: white;
-  border: 1px solid rgba(0,0,0,.09);
-  box-shadow: 0 1px 4px rgba(0,0,0,.03);
-  margin: 10px 0px;
+  font-weight: 500;
+  color: #555;
 `;
+  // padding: 2px 10px;
+  // background: white;
+  // border: 1px solid rgba(0,0,0,.09);
+  // box-shadow: 0 1px 4px rgba(0,0,0,.03);
+  // margin: 10px 0px;
 
 const PostDetail = ({ post }) => {
   const { category, author, timestamp, title, body, comments } = post;
