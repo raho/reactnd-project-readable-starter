@@ -5,7 +5,8 @@ import {
   SET_CURRENT_CATEGORY,
   RECEIVE_POSTS,
   RECEIVE_POST,
-  UPDATE_POST
+  UPDATE_POST,
+  UPDATE_COMMENT
 } from '../actions';
 
 function categories(state = { current: null, currentSet: false, currentBad: false, all: [], loaded: false }, action) {
@@ -67,6 +68,27 @@ function posts(state = [], action) {
     } else {
       return state;
     }
+  }
+  if (action.type === UPDATE_COMMENT) {
+    const { comment } = action;
+    const postIndex = state.findIndex(p => p.id === comment.parentId);
+    if (postIndex >= 0) {
+      const posts = state.slice(); // copy posts
+      const post = posts[postIndex];
+      const commentIndex = post.comments.findIndex(c => c.id === comment.id);
+      if (commentIndex >= 0) {
+        const comments = post.comments.slice(); // copy comments
+        if (comment.deleted) {
+          comments.splice(commentIndex, 1);
+        } else {
+          // replace with udpated comment
+          comments[commentIndex] = comment;
+        }
+        post.comments = comments;
+        return posts;
+      }
+    }
+    return state;
   }
   return state;
 }

@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { fetchPosts } from '../actions';
 import Posts from './Posts';
 
-// TODO: add post from listing
-// TODO: edit post from listing (show the same modal)
 class PostsContainer extends Component {
 
   componentDidMount() {

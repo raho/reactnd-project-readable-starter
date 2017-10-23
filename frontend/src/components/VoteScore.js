@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { deletePost, votePost } from '../actions';
+import { voteComment, votePost } from '../actions';
 import styled from 'styled-components';
 
 const VoteScoreContainer = styled.div`
@@ -19,10 +19,13 @@ const Score = styled.div`
   border-radius: 5px;
 `;
 
-const VoteScore = ({ post, vote }) => (
+/**
+ * It works for both Post and Comment, depending if post or comment given in props
+ */
+const VoteScore = ({ score, vote }) => (
   <VoteScoreContainer>
     <VoteScoreItem>
-      <Score className="bg-secondary text-light">score: {post.voteScore}</Score>
+      <Score className="bg-secondary text-light">score: {score}</Score>
     </VoteScoreItem>
     <VoteScoreItem>
       <button
@@ -45,9 +48,18 @@ const VoteScore = ({ post, vote }) => (
   </VoteScoreContainer>
 )
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  vote: (up) => dispatch(votePost(ownProps.post.id, up)),
-  delete: () => dispatch(deletePost(ownProps.post.id))
-})
+const mapDispatchToProps = (dispatch, ownProps) => {
+  if (ownProps.post) {
+    return {
+      score: ownProps.post.voteScore,
+      vote: (up) => dispatch(votePost(ownProps.post.id, up))
+    }
+  } else {
+    return {
+      score: ownProps.comment.voteScore,
+      vote: (up) => dispatch(voteComment(ownProps.comment.id, up))
+    }
+  }
+}
 
 export default connect(null, mapDispatchToProps)(VoteScore);

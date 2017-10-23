@@ -1,7 +1,7 @@
 
 const API = "http://localhost:3001";
 const headers = {
-  'Authorization': 'readable',
+  'Authorization': 'testuser',
   'Accept': 'application/json',
   'Content-Type': 'application/json'
 };
@@ -55,3 +55,20 @@ export const deletePost = (postId) => {
   })
   .then(res => res.json());
 }
+
+export const deleteComment = (commentId) => {
+  return fetch(`${API}/comments/${commentId}`, {
+    headers,
+    method: 'DELETE'
+  })
+  .then(res => res.json());
+}
+
+export const voteComment = (commentId, up) => {
+  return fetch(`${API}/comments/${commentId}`, {
+    headers,
+    method: 'POST',
+    body: JSON.stringify({option: up ? 'upVote' : 'downVote'}) 
+  })
+  .then(res => res.json());
+};

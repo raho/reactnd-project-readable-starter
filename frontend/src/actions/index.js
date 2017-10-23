@@ -6,6 +6,7 @@ export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const RECEIVE_POST = 'RECEIVE_POST';
 export const UPVOTE_POST = 'VOTE_POST';
 export const UPDATE_POST = 'UPDATE_POST';
+export const UPDATE_COMMENT = 'UPDATE_COMMENT';
 
 export const receiveCategories = (categories) => ({
   type: RECEIVE_CATEGORIES,
@@ -90,4 +91,21 @@ export const deletePost = (postId) => (dispatch) => {
   return api
   .deletePost(postId)
   .then(post => dispatch(updatePost(post)));
+};
+
+export const updateComment = (comment) => ({
+  type: UPDATE_COMMENT,
+  comment
+});
+
+export const deleteComment = (commentId) => (dispatch) => {
+  return api
+  .deleteComment(commentId)
+  .then(comment => dispatch(updateComment(comment)));
+};
+
+export const voteComment = (commentId, up) => (dispatch) => {
+  return api
+  .voteComment(commentId, up)
+  .then(comment => dispatch(updateComment(comment)));
 }

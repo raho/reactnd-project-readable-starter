@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPostIfNeeded } from '../actions';
 import PostDetail from './PostDetail';
+import PostDetailComments from './PostDetailComments';
 
 class PostDetailContainer extends Component {
   state = {
@@ -25,12 +26,13 @@ class PostDetailContainer extends Component {
   }
 
   render() {
-    const { post } = this.props;
+    const { post, comments } = this.props;
     const { error } = this.state;
     return (
       <div>
-        {post && <PostDetail post={ post }/>}
-        {error &&
+        { post && <PostDetail post={post}/> }
+        { post && <PostDetailComments comments={comments}/> }
+        { error &&
           <div className="alert alert-danger" role="alert">
             Post not found: {error}
           </div>
@@ -43,9 +45,11 @@ class PostDetailContainer extends Component {
 const mapStateToProps = ({posts}, ownProps) => {
   const postId = ownProps.match.params.post_id;
   const post = posts.find(p => p.id === postId);
+  const comments = post ? post.comments : [];
   return {
     postId,
-    post
+    post,
+    comments
   }
 }
 
