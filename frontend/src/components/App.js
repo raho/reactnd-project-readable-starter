@@ -7,7 +7,6 @@ import PostsContainer from './PostsContainer';
 import PostDetailContainer from './PostDetailContainer';
 import CategoriesLoader from './CategoriesLoader';
 
-// TODO: add comment (inline??) from post details
 // TODO: edit comment (form or inline?) from post details
 // TODO: edit post (modal form?) from details
 // TODO: add post (modal form?) from listing

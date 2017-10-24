@@ -6,7 +6,8 @@ import {
   RECEIVE_POSTS,
   RECEIVE_POST,
   UPDATE_POST,
-  UPDATE_COMMENT
+  UPDATE_COMMENT,
+  RECEIVE_COMMENT
 } from '../actions';
 
 function categories(state = { current: null, currentSet: false, currentBad: false, all: [], loaded: false }, action) {
@@ -45,18 +46,16 @@ function posts(state = [], action) {
     const { post } = action;
     const postIndex = state.findIndex(p => p.id === post.id);
     if (postIndex < 0) {
-      const posts = state.slice(); //copy array
+      const posts = JSON.parse(JSON.stringify(state)); //clone posts
       posts.push(post);
       return posts;
-    } else {
-      return state;
     }
   }
   if (action.type === UPDATE_POST) {
     const { post } = action;
     const postIndex = state.findIndex(p => p.id === post.id);
     if (postIndex >= 0) {
-      const posts = state.slice(); //copy array
+      const posts = JSON.parse(JSON.stringify(state)); //clone posts
       if (post.deleted) {
         posts.splice(postIndex, 1);
       } else {
@@ -65,30 +64,34 @@ function posts(state = [], action) {
         posts[postIndex] = post;
       }
       return posts;
-    } else {
-      return state;
     }
   }
   if (action.type === UPDATE_COMMENT) {
     const { comment } = action;
     const postIndex = state.findIndex(p => p.id === comment.parentId);
     if (postIndex >= 0) {
-      const posts = state.slice(); // copy posts
+      const posts = JSON.parse(JSON.stringify(state)); //clone posts
       const post = posts[postIndex];
       const commentIndex = post.comments.findIndex(c => c.id === comment.id);
       if (commentIndex >= 0) {
-        const comments = post.comments.slice(); // copy comments
         if (comment.deleted) {
-          comments.splice(commentIndex, 1);
+          post.comments.splice(commentIndex, 1);
         } else {
           // replace with udpated comment
-          comments[commentIndex] = comment;
+          post.comments[commentIndex] = comment;
         }
-        post.comments = comments;
         return posts;
       }
     }
-    return state;
+  }
+  if (action.type === RECEIVE_COMMENT) {
+    const { comment } = action;
+    const postIndex = state.findIndex(p => p.id === comment.parentId);
+    if (postIndex >= 0) {
+      const posts = JSON.parse(JSON.stringify(state)); //clone posts
+      posts[postIndex].comments.push(comment);
+      return posts;
+    }
   }
   return state;
 }

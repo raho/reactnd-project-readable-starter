@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import styled from 'styled-components';
-import DeleteComment from './DeleteComment';
+import DeleteButton from './DeleteButton';
 import VoteScore from './VoteScore';
 
 const CommentDiv = styled.div`
@@ -51,7 +51,7 @@ class Comment extends Component {
             <Date>{moment(timestamp).format('YYYY-MM-DD')}</Date>
           </div>
           <HeaderRight>
-            <DeleteComment comment={comment}/>
+            <DeleteButton comment={comment}/>
           </HeaderRight>
         </Header>
         <Body>{body}</Body>

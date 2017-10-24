@@ -1,7 +1,12 @@
 
+import uuidv1 from 'uuid/v1';
+
 const API = "http://localhost:3001";
+
+export const currentUserName = 'Rachele Bellis';
+
 const headers = {
-  'Authorization': 'testuser',
+  'Authorization': currentUserName,
   'Accept': 'application/json',
   'Content-Type': 'application/json'
 };
@@ -72,3 +77,19 @@ export const voteComment = (commentId, up) => {
   })
   .then(res => res.json());
 };
+
+export const addComment = (postId, body) => {
+  return fetch(`${API}/comments`, {
+    headers,
+    method: 'POST',
+    body: JSON.stringify({
+      id: uuidv1(),
+      parentId: postId,
+      timestamp: new Date(),
+      body,
+      author: currentUserName
+    }) 
+  })
+  .then(res => res.json());
+
+}

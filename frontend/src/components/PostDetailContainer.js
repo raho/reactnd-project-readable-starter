@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPostIfNeeded } from '../actions';
 import PostDetail from './PostDetail';
-import PostDetailComments from './PostDetailComments';
 
 class PostDetailContainer extends Component {
   state = {
@@ -26,12 +25,11 @@ class PostDetailContainer extends Component {
   }
 
   render() {
-    const { post, comments } = this.props;
+    const { post } = this.props;
     const { error } = this.state;
     return (
       <div>
         { post && <PostDetail post={post}/> }
-        { post && <PostDetailComments comments={comments}/> }
         { error &&
           <div className="alert alert-danger" role="alert">
             Post not found: {error}
@@ -45,7 +43,9 @@ class PostDetailContainer extends Component {
 const mapStateToProps = ({posts}, ownProps) => {
   const postId = ownProps.match.params.post_id;
   const post = posts.find(p => p.id === postId);
-  const comments = post ? post.comments : [];
+  const comments = post ? post.comments : []; // we don't need comments, as we have post, but connect from react-redux
+  // does only shallow compare of previous vs new state to decide if rerender is needed. So if we don't map comments
+  // then we'll not get rerendered when only comments change (and not posts)
   return {
     postId,
     post,
