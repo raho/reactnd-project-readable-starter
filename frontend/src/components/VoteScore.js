@@ -30,7 +30,7 @@ const VoteScore = ({ score, vote }) => (
     <VoteScoreItem>
       <button
         type="button"
-        className="btn btn-outline-secondary btn-sm btn-space"
+        className="btn btn-outline-secondary btn-sm"
         onClick={() => vote(true)}
       >
         <i className="fa fa-thumbs-o-up" aria-hidden="true"></i> Upvote
@@ -39,7 +39,7 @@ const VoteScore = ({ score, vote }) => (
     <VoteScoreItem>
       <button
         type="button"
-        className="btn btn-outline-secondary btn-sm btn-space"
+        className="btn btn-outline-secondary btn-sm"
         onClick={() => vote(false)}
         >
         <i className="fa fa-thumbs-o-down" aria-hidden="true"></i> Downvote

@@ -5,6 +5,7 @@ import moment from 'moment';
 import styled from 'styled-components';
 import DeleteButton from './DeleteButton';
 import VoteScore from './VoteScore';
+import EditComment from './EditComment';
 
 const CommentDiv = styled.div`
   padding: 2px 10px;
@@ -20,7 +21,12 @@ const Header = styled.div`
 `;
 
 const HeaderRight = styled.div`
+  display: flex;
   padding-top: 5px;
+`;
+
+const HeaderRightItem = styled.div`
+  padding-left: 10px;
 `;
 
 const Author = styled.div`
@@ -51,7 +57,12 @@ class Comment extends Component {
             <Date>{moment(timestamp).format('YYYY-MM-DD')}</Date>
           </div>
           <HeaderRight>
-            <DeleteButton comment={comment}/>
+            <HeaderRightItem>
+              <EditComment comment={comment}/>
+            </HeaderRightItem>
+            <HeaderRightItem>
+              <DeleteButton comment={comment}/>
+            </HeaderRightItem>
           </HeaderRight>
         </Header>
         <Body>{body}</Body>

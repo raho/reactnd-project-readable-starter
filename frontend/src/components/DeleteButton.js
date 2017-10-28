@@ -7,7 +7,7 @@ const DeleteButton = ({ doDelete }) => (
   <div>
     <button
       type="button"
-      className="btn btn-danger btn-sm btn-space"
+      className="btn btn-outline-danger btn-sm"
       onClick={doDelete}
     >
       <i className="fa fa-trash-o" aria-hidden="true"></i> Delete
