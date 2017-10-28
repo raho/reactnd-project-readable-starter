@@ -91,5 +91,13 @@ export const addComment = (postId, body) => {
     }) 
   })
   .then(res => res.json());
+};
 
-}
+export const updateComment = (commentId, body) => {
+  return fetch(`${API}/comments/${commentId}`, {
+    headers,
+    method: 'PUT',
+    body: JSON.stringify({body}) 
+  })
+  .then(res => res.json());
+};

@@ -121,3 +121,9 @@ export const addComment = (postId, body) => (dispatch) => {
   .addComment(postId, body)
   .then(comment => dispatch(receiveComment(comment)));
 };
+
+export const editComment = (commentId, body) => (dispatch) => {
+  return api
+  .updateComment(commentId, body)
+  .then(comment => dispatch(updateComment(comment)));
+}
