@@ -97,7 +97,10 @@ export const updateComment = (commentId, body) => {
   return fetch(`${API}/comments/${commentId}`, {
     headers,
     method: 'PUT',
-    body: JSON.stringify({body}) 
+    body: JSON.stringify({
+      timestamp: new Date(),
+      body
+    }) 
   })
   .then(res => res.json());
 };
