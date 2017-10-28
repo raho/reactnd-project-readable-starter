@@ -61,6 +61,19 @@ export const deletePost = (postId) => {
   .then(res => res.json());
 }
 
+export const updatePost = (postId, title, body) => {
+  return fetch(`${API}/posts/${postId}`, {
+    headers,
+    method: 'PUT',
+    body: JSON.stringify({
+      timestamp: new Date(),
+      title,
+      body
+    }) 
+  })
+  .then(res => res.json());
+};
+
 export const deleteComment = (commentId) => {
   return fetch(`${API}/comments/${commentId}`, {
     headers,

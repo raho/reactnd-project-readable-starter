@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import styled from 'styled-components';
-import { editComment } from '../actions';
+import { editPost } from '../actions';
 
 const customStyles = {
   content: {
@@ -24,7 +24,7 @@ const ButtonWrap = styled.div`
   justify-content: flex-end;
 `;
 
-class EditComment extends Component {
+class EditPost extends Component {
   constructor(props) {
     super(props);
 
@@ -35,7 +35,8 @@ class EditComment extends Component {
 
   openModal = () => {
     this.setState({
-      body: this.props.comment.body,
+      title: this.props.post.title,
+      body: this.props.post.body,
       modalOpen: true
     })
   }
@@ -45,21 +46,27 @@ class EditComment extends Component {
     })
   }
 
+  updateTitle = (title) => {
+    this.setState({
+      title
+    })
+  }
   updateBody = (body) => {
     this.setState({
       body
     })
   }
 
-  editComment = () => {
-    this.props.editComment(this.state.body);
+  editPost = () => {
+    const { title, body } = this.state;
+    this.props.editPost(title, body);
     this.setState({
       modalOpen: false
     });
   }
 
   render() {
-    const { body, modalOpen } = this.state;
+    const { title, body, modalOpen } = this.state;
     return (
       <div>
         <button
@@ -77,12 +84,23 @@ class EditComment extends Component {
         >
           <form>
             <div class="form-group">
+              <label for="title">Title</label>
+              <input 
+                id="title" 
+                className="form-control" 
+                type="text" 
+                placeholder="Title" 
+                value={title}
+                onChange={(event) => this.updateTitle(event.target.value)}
+              />
+            </div>
+            <div class="form-group">
               <label for="body">Body</label>
               <textarea
                 id="body"
                 className="form-control"
                 rows="3"
-                placeholder="Comment body"
+                placeholder="Post body"
                 value={body}
                 onChange={(event) => this.updateBody(event.target.value)}
               />
@@ -90,8 +108,8 @@ class EditComment extends Component {
             <ButtonWrap>
               <button
                 type="button"
-                onClick={this.editComment}
-                disabled={body === this.props.comment.body}
+                onClick={this.editPost}
+                disabled={title === this.props.post.title && body === this.props.post.body}
                 className="btn btn-primary btn-sm"
               >Save</button>
             </ButtonWrap>
@@ -102,12 +120,12 @@ class EditComment extends Component {
   }
 }
 
-EditComment.propTypes = {
-  comment: PropTypes.object.isRequired
+EditPost.propTypes = {
+  post: PropTypes.object.isRequired
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  editComment: (body) => dispatch(editComment(ownProps.comment.id, body))
+  editPost: (title, body) => dispatch(editPost(ownProps.post.id, title, body))
 })
 
-export default connect(null, mapDispatchToProps)(EditComment);
+export default connect(null, mapDispatchToProps)(EditPost);

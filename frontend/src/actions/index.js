@@ -94,6 +94,12 @@ export const deletePost = (postId) => (dispatch) => {
   .then(post => dispatch(updatePost(post)));
 };
 
+export const editPost = (postId, title, body) => (dispatch) => {
+  return api
+  .updatePost(postId, title, body)
+  .then(post => dispatch(updatePost(post)));
+}
+
 export const updateComment = (comment) => ({
   type: UPDATE_COMMENT,
   comment

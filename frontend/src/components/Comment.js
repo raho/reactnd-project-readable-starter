@@ -65,7 +65,15 @@ class Comment extends Component {
             </HeaderRightItem>
           </HeaderRight>
         </Header>
-        <Body>{body}</Body>
+        <Body>
+          { body.split("\n").map(item => (
+              <span>
+                {item}
+                <br/>
+              </span>
+            ))
+          }
+        </Body>
         <VoteScore comment={comment}/>
       </CommentDiv>
     )

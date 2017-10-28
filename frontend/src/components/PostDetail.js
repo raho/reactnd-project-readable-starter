@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import VoteScore from './VoteScore';
 import DeleteButton from './DeleteButton';
+import EditPost from './EditPost';
 import PostDetailComments from './PostDetailComments';
 
 const PostDetailContainer = styled.div`
@@ -13,6 +14,15 @@ const PostDetailContainer = styled.div`
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
+`;
+
+const HeaderRight = styled.div`
+  display: flex;
+  padding-top: 5px;
+`;
+
+const HeaderRightItem = styled.div`
+  padding-left: 10px;
 `;
 
 const Author = styled.div`
@@ -49,10 +59,25 @@ const PostDetail = ({ post }) => {
             <Author>{author}</Author>
             <Date>{moment(timestamp).format('YYYY-MM-DD')}</Date>
           </div>
-          <DeleteButton post={post}/>
+          <HeaderRight>
+            <HeaderRightItem>
+              <EditPost post={post}/>
+            </HeaderRightItem>
+            <HeaderRightItem>
+              <DeleteButton post={post}/>
+            </HeaderRightItem>
+          </HeaderRight>
         </Header>
         <Title>{title}</Title>
-        <Body>{body}</Body>
+        <Body>
+          { body.split("\n").map(item => (
+              <span>
+                {item}
+                <br/>
+              </span>
+            ))
+          }
+        </Body>
         <VoteScore post={post} />
       </PostDetailContainer>
       <CommentsContainer>

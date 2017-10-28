@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import VoteScore from './VoteScore';
+import EditPost from './EditPost';
 import DeleteButton from './DeleteButton';
 
 const PostContainer = styled.div`
@@ -27,6 +28,14 @@ const PostTitle = styled.div`
   margin-bottom: 10px;
 `;
 
+const EditDelete = styled.div`
+  display: flex;
+  padding-top: 5px;
+`;
+
+const EditDeleteItem = styled.div`
+  padding-right: 10px;
+`;
 
 class Post extends Component {
 
@@ -42,7 +51,14 @@ class Post extends Component {
         <PostField>date: {moment(post.timestamp).format('YYYY-MM-DD')}</PostField>
         <PostField>comments: {post.comments.length}</PostField>
         <VoteScore post={post}/>
-        <DeleteButton post={post}/>
+        <EditDelete>
+          <EditDeleteItem>
+            <EditPost post={post}/>
+          </EditDeleteItem>
+          <EditDeleteItem>
+            <DeleteButton post={post}/>
+          </EditDeleteItem>
+        </EditDelete>
       </PostContainer>
     )
   }

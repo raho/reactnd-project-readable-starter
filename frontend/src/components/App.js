@@ -7,9 +7,7 @@ import PostsContainer from './PostsContainer';
 import PostDetailContainer from './PostDetailContainer';
 import CategoriesLoader from './CategoriesLoader';
 
-// TODO: edit post (modal form?) from details
 // TODO: add post (modal form?) from listing
-// TODO: edit post (modal form?) from listing (show the same modal)
 /**
  * Only display the UI after CategoriesLoader loaded all categories and set the current from URL.
  * 
