@@ -71,7 +71,7 @@ class AddPost extends Component {
           className="btn btn-primary btn-sm"
           onClick={this.openModal}
         >
-          <i className="fa fa-pencil" aria-hidden="true"></i> Add Post
+          <i className="fa fa-plus-square" aria-hidden="true"></i> Add Post
         </button>
         <Modal
           isOpen={modalOpen}

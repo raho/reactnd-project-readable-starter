@@ -26,3 +26,4 @@ Information about the API server and how to use it can be found in its [README f
 ## Frontend App
 
 The api endpoint for local API server is hardcoded in the `src/utils/api.js` file.
+The user of the app is also hardcoded in ht `src/utils/api.js` file, so all the posts and comments will be created as "Rachele Bellis" (just some random name).
