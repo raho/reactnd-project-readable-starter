@@ -83,8 +83,8 @@ class EditPost extends Component {
           contentLabel='Modal'
         >
           <form>
-            <div class="form-group">
-              <label for="title">Title</label>
+            <div className="form-group">
+              <label htmlFor="title">Title</label>
               <input 
                 id="title" 
                 className="form-control" 
@@ -94,8 +94,8 @@ class EditPost extends Component {
                 onChange={(event) => this.updateTitle(event.target.value)}
               />
             </div>
-            <div class="form-group">
-              <label for="body">Body</label>
+            <div className="form-group">
+              <label htmlFor="body">Body</label>
               <textarea
                 id="body"
                 className="form-control"

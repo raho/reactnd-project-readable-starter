@@ -8,6 +8,7 @@ import PostDetailContainer from './PostDetailContainer';
 import CategoriesLoader from './CategoriesLoader';
 
 // TODO: add post (modal form?) from listing
+// TODO: navigate to new post after adding
 /**
  * Only display the UI after CategoriesLoader loaded all categories and set the current from URL.
  * 

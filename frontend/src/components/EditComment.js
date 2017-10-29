@@ -76,8 +76,8 @@ class EditComment extends Component {
           contentLabel='Modal'
         >
           <form>
-            <div class="form-group">
-              <label for="body">Body</label>
+            <div className="form-group">
+              <label htmlFor="body">Body</label>
               <textarea
                 id="body"
                 className="form-control"
