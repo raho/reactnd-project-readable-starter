@@ -5,20 +5,6 @@ import Modal from 'react-modal';
 import styled from 'styled-components';
 import { editComment } from '../actions';
 
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '200px',
-    right: '200px',
-    bottom: 'auto',
-    transform: 'translate(0, -50%)',
-    boxShadow: '0 5px 15px rgba(0,0,0,.5)'
-  },
-  overlay: {
-    backgroundColor: 'rgba(0, 0, 0, 0.5)'
-  }
-};
-
 const ButtonWrap = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -72,7 +58,8 @@ class EditComment extends Component {
         <Modal
           isOpen={modalOpen}
           onRequestClose={this.closeModal}
-          style={customStyles}
+          className='react-modal'
+          overlayClassName='react-overlay'
           contentLabel='Modal'
         >
           <form>

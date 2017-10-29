@@ -66,8 +66,8 @@ class Comment extends Component {
           </HeaderRight>
         </Header>
         <Body>
-          { body.split("\n").map(item => (
-              <span>
+          { body.split("\n").map((item, index) => (
+              <span key={index}>
                 {item}
                 <br/>
               </span>

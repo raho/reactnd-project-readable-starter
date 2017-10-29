@@ -74,6 +74,22 @@ export const updatePost = (postId, title, body) => {
   .then(res => res.json());
 };
 
+export const addPost = (category, title, body) => {
+  return fetch(`${API}/posts`, {
+    headers,
+    method: 'POST',
+    body: JSON.stringify({
+      id: uuidv1(),
+      timestamp: new Date().getTime(),
+      category, 
+      title,
+      body,
+      author: currentUserName
+    }) 
+  })
+  .then(res => res.json());
+};
+
 export const deleteComment = (commentId) => {
   return fetch(`${API}/comments/${commentId}`, {
     headers,

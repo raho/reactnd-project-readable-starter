@@ -3,3 +3,30 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.react-overlay {
+  z-index: 10;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.react-modal {
+  position: absolute;
+  top: 50%;
+  left: 200px;
+  right: 200px;
+  bottom: auto;
+  transform: translate(0, -50%);
+  border: 1px solid rgb(204, 204, 204);
+  background: rgb(255, 255, 255);
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
+  border-radius: 3px;
+  box-shadow: 0 5px 15px rgba(0,0,0,.5);
+}

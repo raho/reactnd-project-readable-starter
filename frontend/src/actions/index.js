@@ -100,6 +100,18 @@ export const editPost = (postId, title, body) => (dispatch) => {
   .then(post => dispatch(updatePost(post)));
 }
 
+export const addPost = (category, title, body) => (dispatch) => {
+  let post;
+  return api
+  .addPost(category, title, body)
+  .then(_post => {
+    post = _post;
+    post.comments = [];
+  })
+  .then(() => dispatch(receivePost(post)))
+  .then(() => post);
+};
+
 export const updateComment = (comment) => ({
   type: UPDATE_COMMENT,
   comment

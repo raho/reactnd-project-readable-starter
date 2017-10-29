@@ -70,8 +70,8 @@ const PostDetail = ({ post }) => {
         </Header>
         <Title>{title}</Title>
         <Body>
-          { body.split("\n").map(item => (
-              <span>
+          { body.split("\n").map((item, index) => (
+              <span key={index}>
                 {item}
                 <br/>
               </span>
