@@ -66,7 +66,7 @@ export const updatePost = (postId, title, body) => {
     headers,
     method: 'PUT',
     body: JSON.stringify({
-      timestamp: new Date(),
+      timestamp: new Date().getTime(),
       title,
       body
     }) 
@@ -98,7 +98,7 @@ export const addComment = (postId, body) => {
     body: JSON.stringify({
       id: uuidv1(),
       parentId: postId,
-      timestamp: new Date(),
+      timestamp: new Date().getTime(),
       body,
       author: currentUserName
     }) 
@@ -111,7 +111,7 @@ export const updateComment = (commentId, body) => {
     headers,
     method: 'PUT',
     body: JSON.stringify({
-      timestamp: new Date(),
+      timestamp: new Date().getTime(),
       body
     }) 
   })
