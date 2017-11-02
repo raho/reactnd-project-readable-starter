@@ -44,8 +44,9 @@ class EditPost extends Component {
   }
 
   editPost = () => {
+    const { post } = this.props;
     const { title, body } = this.state;
-    this.props.editPost(title, body);
+    this.props.editPost(post.id, title, body);
     this.setState({
       modalOpen: false
     });
@@ -111,8 +112,4 @@ EditPost.propTypes = {
   post: PropTypes.object.isRequired
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  editPost: (title, body) => dispatch(editPost(ownProps.post.id, title, body))
-})
-
-export default connect(null, mapDispatchToProps)(EditPost);
+export default connect(null, {editPost})(EditPost);
