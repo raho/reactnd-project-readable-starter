@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { voteComment, votePost } from '../actions';
+import { voteComment, votePost } from '../actions/PostsActions';
 import styled from 'styled-components';
 
 const VoteScoreContainer = styled.div`

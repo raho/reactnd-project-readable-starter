@@ -1,33 +1,6 @@
 import * as api from '../utils/api';
+import { RECEIVE_POSTS, RECEIVE_POST, UPDATE_COMMENT, RECEIVE_COMMENT, UPDATE_POST } from './types';
 
-export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES';
-export const SET_CURRENT_CATEGORY = 'SET_CURRENT_CATEGORY';
-export const RECEIVE_POSTS = 'RECEIVE_POSTS';
-export const RECEIVE_POST = 'RECEIVE_POST';
-export const UPVOTE_POST = 'VOTE_POST';
-export const UPDATE_POST = 'UPDATE_POST';
-export const UPDATE_COMMENT = 'UPDATE_COMMENT';
-export const RECEIVE_COMMENT = 'RECEIVE_COMMENT';
-
-export const receiveCategories = (categories) => ({
-  type: RECEIVE_CATEGORIES,
-  categories
-});
-
-/**
- * For given category path, sets current category name in store
- * @param {*} categoryPath 
- */
-export const setCurrentCategory = (categoryPath) => ({
-  type: SET_CURRENT_CATEGORY,
-  categoryPath
-});
-
-export const fetchCategories = () => (dispatch) => {
-  return api
-  .fetchCategories()
-  .then(categories => dispatch(receiveCategories(categories)));
-};
 
 export const receivePosts = (posts) => ({
   type: RECEIVE_POSTS,

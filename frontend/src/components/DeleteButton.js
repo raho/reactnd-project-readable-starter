@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { deleteComment, deletePost } from '../actions';
+import { deleteComment, deletePost } from '../actions/PostsActions';
 
 const DeleteButton = ({ doDelete }) => (
   <div>

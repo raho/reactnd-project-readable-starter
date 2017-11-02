@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { currentUserName } from '../utils/api';
-import { addComment } from '../actions';
+import { addComment } from '../actions/PostsActions';
 
 const AddCommentDiv = styled.div`
   padding: 2px 10px;

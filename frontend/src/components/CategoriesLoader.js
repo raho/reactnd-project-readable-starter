@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCategories, setCurrentCategory } from '../actions';
+import { fetchCategories, setCurrentCategory } from '../actions/CategoriesActions';
 
 class CategoriesLoader extends Component {
 

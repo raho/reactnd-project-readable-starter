@@ -8,7 +8,7 @@ import {
   UPDATE_POST,
   UPDATE_COMMENT,
   RECEIVE_COMMENT
-} from '../actions';
+} from '../actions/types';
 
 function categories(state = { current: null, currentSet: false, currentBad: false, all: [], loaded: false }, action) {
   switch (action.type) {

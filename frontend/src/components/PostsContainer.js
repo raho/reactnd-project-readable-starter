@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts } from '../actions';
+import { fetchPosts } from '../actions/PostsActions';
 import Posts from './Posts';
 
 class PostsContainer extends Component {

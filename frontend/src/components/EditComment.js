@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import styled from 'styled-components';
-import { editComment } from '../actions';
+import { editComment } from '../actions/PostsActions';
 
 const ButtonWrap = styled.div`
   display: flex;

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
-import { addPost } from '../actions';
+import { addPost } from '../actions/PostsActions';
 
 const ButtonWrap = styled.div`
   display: flex;
