@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import moment from 'moment';
 import styled from 'styled-components';
 import DeleteButton from './DeleteButton';
@@ -84,11 +83,4 @@ Comment.propTypes = {
   comment: PropTypes.object.isRequired
 };
 
-const mapStateToProps = ({categories}) => {
-  return {
-  }
-};
-const mapDispatchToProps = (dispatch, ownProps) => ({
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Comment);
+export default Comment;
