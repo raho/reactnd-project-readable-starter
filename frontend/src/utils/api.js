@@ -35,7 +35,12 @@ export const fetchPost = (id) => {
           throw new Error(errorJson.error)
         });
       }
-      return res.json()
+      const post = res.json();
+      if (post.id) {
+        return post;
+      } else {
+        throw new Error(`post with id ${id} not found`);
+      }
     });
 }
 
