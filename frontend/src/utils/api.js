@@ -35,7 +35,9 @@ export const fetchPost = (id) => {
           throw new Error(errorJson.error)
         });
       }
-      const post = res.json();
+      return res.json();
+    })
+    .then(post => {
       if (post.id) {
         return post;
       } else {
