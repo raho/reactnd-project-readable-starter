@@ -42,7 +42,7 @@ class AddComment extends Component {
   }
 
   addComment = () => {
-    this.props.addComment(this.state.body);
+    this.props.addComment(this.props.post.id, this.state.body);
     this.setState({
       body: ''
     });
@@ -81,8 +81,4 @@ AddComment.propTypes = {
   post: PropTypes.object.isRequired
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  addComment: (body) => dispatch(addComment(ownProps.post.id, body))
-})
-
-export default connect(null, mapDispatchToProps)(AddComment);
+export default connect(null, {addComment})(AddComment);
