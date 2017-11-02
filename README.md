@@ -16,6 +16,7 @@ To start the project locally:
     - `node server`
 * Install and start the frontend app
     - `cd frontend`
+    - `npm install`
     - `npm start`
 
 
